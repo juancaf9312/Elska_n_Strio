@@ -83,6 +83,7 @@ void AEnSCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
+	TeamId = FGenericTeamId((int8)Team);
 }
 
 void AEnSCharacter::PostInitializeComponents()

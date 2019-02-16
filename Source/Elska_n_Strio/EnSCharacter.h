@@ -5,12 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "GenericTeamAgentInterface.h"
 #include "EnSCharacter.generated.h"
 
 class UInputComponent;
 
 UCLASS(config=Game)
-class AEnSCharacter : public ACharacter, public IAbilitySystemInterface
+class AEnSCharacter : public ACharacter, public IAbilitySystemInterface, public IGenericTeamAgentInterface
 {
 	GENERATED_BODY()
 
@@ -30,6 +31,9 @@ class AEnSCharacter : public ACharacter, public IAbilitySystemInterface
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UMotionControllerComponent* L_MotionController;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	int32 Team;
+
 	///------------------ Gameplay Ability System -----------------------------------------
 
 protected:
@@ -45,6 +49,8 @@ protected:
 	TArray<TSubclassOf<class UGameplayAbility>> GameplayAbilities;
 
 	///------------------------------------------------------------------------------------
+
+	FGenericTeamId TeamId;
 
 public:
 
@@ -109,6 +115,8 @@ public:
 	FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
+	FORCEINLINE virtual FGenericTeamId GetGenericTeamId() const override { return TeamId; }
 
 	// Implement IAbilitySystemInterface
 	UAbilitySystemComponent* GetAbilitySystemComponent() const override;
