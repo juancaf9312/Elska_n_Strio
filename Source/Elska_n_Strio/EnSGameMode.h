@@ -6,7 +6,7 @@
 #include "GameFramework/GameMode.h"
 #include "EnSGameMode.generated.h"
 
-UCLASS(minimalapi)
+UCLASS()
 class AEnSGameMode : public AGameMode
 {
 	GENERATED_BODY()
