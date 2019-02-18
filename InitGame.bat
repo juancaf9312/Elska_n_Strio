@@ -1,0 +1,1 @@
+"D:\UE_4.21\Engine\Binaries\Win64\UE4Editor.exe" "D:\GuanabanaGaming\UE4WinterJam\Elska_n_Strio\Elska_n_Strio.uproject" -game -log

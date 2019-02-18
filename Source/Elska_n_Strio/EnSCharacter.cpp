@@ -13,6 +13,8 @@
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
 #include "AbilitySystemComponent.h"
 #include "Engine/DataTable.h"
+#include "Components/StaticMeshComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 
 #include "EnSPlayerAttributeSet.h"
 
@@ -36,15 +38,14 @@ AEnSCharacter::AEnSCharacter()
 	FirstPersonCameraComponent->RelativeLocation = FVector(-39.56f, 1.75f, 64.f); // Position the camera
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
 
-	// Create a mesh component that will be used when being viewed from a '1st person' view (when controlling this pawn)
-	Mesh1P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("CharacterMesh1P"));
-	Mesh1P->SetOnlyOwnerSee(true);
-	Mesh1P->SetupAttachment(FirstPersonCameraComponent);
-	Mesh1P->bCastDynamicShadow = false;
-	Mesh1P->CastShadow = false;
-	Mesh1P->RelativeRotation = FRotator(1.9f, -19.19f, 5.2f);
-	Mesh1P->RelativeLocation = FVector(-0.5f, -4.4f, -155.7f);
+	MeshArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	MeshArm->SetupAttachment(FirstPersonCameraComponent);
+	MeshArm->TargetArmLength = 0.f;
+	MeshArm->bInheritPitch = false;
+	MeshArm->bInheritRoll = false;
 
+	GetMesh()->SetupAttachment(MeshArm);
+	GetMesh()->SetOwnerNoSee(true);
 
 	// Note: The ProjectileClass and the skeletal mesh/anim blueprints for Mesh1P, FP_Gun, and VR_Gun 
 	// are set in the derived blueprint asset named MyCharacter to avoid direct content references in C++.
@@ -53,11 +54,14 @@ AEnSCharacter::AEnSCharacter()
 	R_MotionController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("R_MotionController"));
 	R_MotionController->MotionSource = FXRMotionControllerBase::RightHandSourceId;
 	R_MotionController->SetupAttachment(RootComponent);
-	L_MotionController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("L_MotionController"));
-	L_MotionController->SetupAttachment(RootComponent);
 
-	// Uncomment the following line to turn motion controllers on by default:
-	//bUsingMotionControllers = true;
+	OculusGoController = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("OCulusGoController"));
+	OculusGoController->SetupAttachment(R_MotionController);
+	OculusGoController->SetOnlyOwnerSee(true);
+	OculusGoController->bCastStaticShadow = false;
+	OculusGoController->bCastDynamicShadow = false;
+
+	bUsingMotionControllers = true;
 
 	// Ability system initializtion
 	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("Ability System"));
