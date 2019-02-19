@@ -77,9 +77,10 @@ void UMainMenu::SetServerList(TArray<FServerData> ServerNames)
 		if (!ensure(Row != nullptr)) return;
 
 		Row->ServerName->SetText(FText::FromString(ServerData.Name));
-		Row->HostUser->SetText(FText::FromString(ServerData.HostUsername));
-		FString FractionText = FString::Printf(TEXT("%d/%d"), ServerData.CurrentPlayers, ServerData.MaxPlayers);
-		Row->ConnectionFraction->SetText(FText::FromString(FractionText));
+		
+		FSlateFontInfo FontInfo;
+		FontInfo.Size = 20;
+		Row->ServerName->SetFont(FontInfo);
 		Row->Setup(this, i);
 		++i;
 
