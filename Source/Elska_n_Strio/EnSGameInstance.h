@@ -18,6 +18,7 @@ class ELSKA_N_STRIO_API UEnSGameInstance : public UGameInstance, public IMenuInt
 {
 	GENERATED_BODY()
 
+	
 public:
 	UEnSGameInstance(const FObjectInitializer & ObjectInitializer);
 
@@ -43,7 +44,7 @@ public:
 
 private:
 	TSubclassOf<class UUserWidget> MenuClass;
-	TSubclassOf<class UUserWidget> InGameMenuClass;
+	TSubclassOf<class UUserWidget> InGameMenuClass; 
 
 	class UMainMenu* Menu;
 

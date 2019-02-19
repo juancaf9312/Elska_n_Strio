@@ -5,6 +5,9 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Blueprint/UserWidget.h"
 #include "OnlineSessionSettings.h"
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
+#include "Components/WidgetComponent.h"
 
 #include "MenuSystem/MainMenu.h"
 #include "MenuSystem/MenuWidget.h"
@@ -23,6 +26,7 @@ UEnSGameInstance::UEnSGameInstance(const FObjectInitializer & ObjectInitializer)
 	if (!ensure(InGameMenuBPClass.Class != nullptr)) return;
 
 	InGameMenuClass = InGameMenuBPClass.Class;
+
 }
 
 void UEnSGameInstance::Init()
