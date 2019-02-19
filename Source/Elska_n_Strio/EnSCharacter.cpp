@@ -47,21 +47,6 @@ AEnSCharacter::AEnSCharacter()
 	GetMesh()->SetupAttachment(MeshArm);
 	GetMesh()->SetOwnerNoSee(true);
 
-	// Note: The ProjectileClass and the skeletal mesh/anim blueprints for Mesh1P, FP_Gun, and VR_Gun 
-	// are set in the derived blueprint asset named MyCharacter to avoid direct content references in C++.
-
-	// Create VR Controllers.
-	R_MotionController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("R_MotionController"));
-	R_MotionController->MotionSource = FXRMotionControllerBase::RightHandSourceId;
-	R_MotionController->SetupAttachment(RootComponent);
-
-	OculusGoController = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("OCulusGoController"));
-	OculusGoController->SetupAttachment(R_MotionController);
-	OculusGoController->SetOnlyOwnerSee(true);
-	OculusGoController->bCastStaticShadow = false;
-	OculusGoController->bCastDynamicShadow = false;
-
-	bUsingMotionControllers = true;
 
 	// Ability system initializtion
 	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("Ability System"));
