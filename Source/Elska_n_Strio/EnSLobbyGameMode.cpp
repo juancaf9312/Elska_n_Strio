@@ -36,5 +36,5 @@ void AEnSLobbyGameMode::StartGame()
 	if (!ensure(World != nullptr)) return;
 
 	bUseSeamlessTravel = true;
-	World->ServerTravel("/Game/EnS/Maps/TestMap?listen");
+	World->ServerTravel("/Game/EnS/Maps/Inframundo?listen");
 }

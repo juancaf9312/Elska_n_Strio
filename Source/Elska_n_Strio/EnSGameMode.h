@@ -13,6 +13,10 @@ class AEnSGameMode : public AGameMode
 
 public:
 	AEnSGameMode();
+
+	UFUNCTION(BlueprintCallable, Server,Reliable , WithValidation)
+	void RespawnPlayer(APlayerController* Player);
+
 };
 
 

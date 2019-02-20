@@ -138,7 +138,7 @@ void UEnSGameInstance::OnCreateSessionComplete(FName SessionName, bool Success)
 	UWorld* World = GetWorld();
 	if (!ensure(World != nullptr)) return;
 
-	World->ServerTravel("/Game/EnS/Maps/Lobby?listen");
+	World->ServerTravel("/Game/EnS/Maps/Transiton?listen");
 }
 
 void UEnSGameInstance::RefreshServerList()

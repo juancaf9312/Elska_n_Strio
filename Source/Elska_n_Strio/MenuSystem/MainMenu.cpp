@@ -77,10 +77,7 @@ void UMainMenu::SetServerList(TArray<FServerData> ServerNames)
 		if (!ensure(Row != nullptr)) return;
 
 		Row->ServerName->SetText(FText::FromString(ServerData.Name));
-		
-		FSlateFontInfo FontInfo;
-		FontInfo.Size = 20;
-		Row->ServerName->SetFont(FontInfo);
+
 		Row->Setup(this, i);
 		++i;
 

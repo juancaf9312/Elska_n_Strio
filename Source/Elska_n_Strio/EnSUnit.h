@@ -30,6 +30,9 @@ class AEnSUnit : public ACharacter, public IAbilitySystemInterface, public IGene
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	AActor* Target;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	APawn* PlayerOwner;
 	///------------------ Gameplay Ability System -----------------------------------------
 
 protected:
