@@ -36,6 +36,9 @@ public:
 	UFUNCTION(Exec)
 		void Join(uint32 Index) override;
 
+	UFUNCTION(Exec)
+	virtual void GoOffline() override;
+
 	void StartSession();
 
 	virtual void LoadMainMenu() override;

@@ -45,6 +45,9 @@ bool UMainMenu::Initialize()
 	if (!ensure(ConfirmJoinMenuButton != nullptr)) return false;
 	ConfirmJoinMenuButton->OnClicked.AddDynamic(this, &UMainMenu::JoinServer);
 
+	if (!ensure(OfflineButton != nullptr)) return false;
+	OfflineButton->OnClicked.AddDynamic(this, &UMainMenu::StartGameOffline);
+
 	return true;
 }
 
@@ -142,4 +145,11 @@ void UMainMenu::QuitPressed()
 	if (!ensure(PlayerController != nullptr)) return;
 
 	PlayerController->ConsoleCommand("quit");
+}
+
+void UMainMenu::StartGameOffline()
+{
+	if (MenuInterface != nullptr) {
+		MenuInterface->GoOffline();
+	}
 }

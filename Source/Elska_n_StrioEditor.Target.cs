@@ -9,5 +9,5 @@ public class Elska_n_StrioEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 		ExtraModuleNames.Add("Elska_n_Strio");
-	}
+            }
 }

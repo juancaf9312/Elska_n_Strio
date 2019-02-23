@@ -39,6 +39,9 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* HostButton;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* OfflineButton;
 	
 	UPROPERTY(meta = (BindWidget))
 	class UButton* JoinButton;
@@ -94,6 +97,9 @@ private:
 
 	UFUNCTION()
 	void QuitPressed();
+
+	UFUNCTION()
+	void StartGameOffline();
 
 	TOptional<uint32> SelectedIndex;
 

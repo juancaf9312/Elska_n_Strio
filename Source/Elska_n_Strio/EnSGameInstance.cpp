@@ -218,6 +218,20 @@ void UEnSGameInstance::OnJoinSessionComplete(FName SessionName, EOnJoinSessionCo
 	PlayerController->ClientTravel(Address, ETravelType::TRAVEL_Absolute);
 }
 
+void UEnSGameInstance::GoOffline()
+{
+	UWorld* World = GetWorld();
+	if (!ensure(World != nullptr)) return;
+
+	APlayerController* PlayerController = World->GetFirstPlayerController();
+	if (!ensure(PlayerController != nullptr)) return;
+
+	PlayerController->SetInputMode(FInputModeGameOnly());
+
+	PlayerController->bShowMouseCursor = false;
+	World->ServerTravel("/Game/EnS/Maps/Inframundo?listen");
+}
+
 void UEnSGameInstance::StartSession()
 {
 	if (SessionInterface.IsValid())

@@ -9,5 +9,6 @@ public class Elska_n_StrioTarget : TargetRules
 	{
 		Type = TargetType.Game;
 		ExtraModuleNames.Add("Elska_n_Strio");
-	}
+
+    }
 }
